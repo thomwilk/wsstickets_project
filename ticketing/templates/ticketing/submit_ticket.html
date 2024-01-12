@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Ticket</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ticketing/style.css' %}">
+    <link rel="shortcut icon" type="image/ico" href="{% static 'ticketing/favicon.ico' %}"/>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="form-container">
+    <h1>Submit a Maintenance Ticket</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="field-container">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="field-container">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <a href="/tickets/view/"><input type="submit" value="Ticket Dashboard" class="btn btn-primary"></a>
+    </div>
+</body>
+</html>
