@@ -2,8 +2,6 @@
 * { margin: 0; padding: 0; }
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     font-family: 'Oswald', Arial Narrow, Arial, Sans-Serif;
     background-color: #fff;
@@ -28,7 +26,7 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, strong, b {
+h1, h2, strong, b {
     color: #f9b15c;
 }
 
@@ -50,7 +48,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 350px;
     margin: 0;
 }
 
@@ -78,7 +76,6 @@ input[type="submit"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
     margin-top: 10px;
 }
 

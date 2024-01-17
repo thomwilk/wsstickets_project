@@ -1,26 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ticket Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'ticketing/style.css' %}">
-    <link rel="shortcut icon" type="image/ico" href="{% static 'ticketing/favicon.ico' %}"/>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-    <div class="container">
-        <h1 class="text-center">Ticket Dashboard</h1>
-        <a href="/tickets/" class="btn btn-primary">Create Ticket</a>
-        <a href="/tickets/all/" class="btn btn-primary">Show All</a>
-        <a href="/tickets/view/" class="btn btn-primary">Hide Closed</a>
+{% include 'ticketing/nav.html' %}
         <table class="table table-dark table-striped"> 
             <thead>
                 <tr>
                     <th class="text-center">Building</th>
                     <th class="text-center">Unit</th>
+                    <th class="text-center">Tenant Name</th>
                     <th class="text-center">Description</th>
                     <th class="text-center">Status</th>
                     <th class="text-center">Action</th>
@@ -29,22 +13,23 @@
             <tbody>
                 {% for ticket in tickets %}
                 <tr>
-                    <td class="text-center">{{ ticket.building }}</td>
-                    <td class="text-center">{{ ticket.unit }}</td>
-                    <td>{{ ticket.description }}</td>
-                    <td class="text-center">{{ ticket.status }}</td>
+                    <td class="text-center align-middle">{{ ticket.building }}</td>
+                    <td class="text-center align-middle">{{ ticket.unit }}</td>
+                    <td class="text-center align-middle">{{ ticket.tenant_name }}</td>
+                    <td class="align-middle">{{ ticket.description }}</td>
+                    <td class="text-center align-middle">{{ ticket.status }}</td>
                     <td class="text-center">
-                        <form style="background-color:transparent;" id="status-form" method="POST" action="/tickets/modify/{{ ticket.id }}/{{ selectedOption }}">
+                        <form style="background-color:transparent; margin:0 auto;" id="status-form" method="POST" action="/tickets/modify/{{ ticket.id }}/{{ selectedOption }}">
                             {% csrf_token %}
                             <div class="input-group d-flex justify-content-center">
-                                <div class="icon-container">
-                                    <i class="fas fa-2x fa-folder-open" onclick="updateStatus('Open')"></i>
-                                </div>
                                 <div class="icon-container">
                                     <i class="fas fa-2x fa-spinner" onclick="updateStatus('In Progress')"></i>
                                 </div>
                                 <div class="icon-container">
                                     <i class="fas fa-2x fa-check-circle" onclick="updateStatus('Closed')"></i>
+                                </div>
+                                <div class="icon-container">
+                                    <i class="fas fa-2x fa-folder-open" onclick="updateStatus('Open')"></i>
                                 </div>
                             </div>
                         </form>                        

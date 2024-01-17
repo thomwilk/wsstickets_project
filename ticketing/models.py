@@ -22,6 +22,8 @@ class Ticket(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    tenant_name = models.CharField(max_length=100, blank=True, null=True)
+    entry_permission = models.BooleanField(default=True,)
 
     def __str__(self):
         return f"{self.building.name} Unit {self.unit} - {self.status}"

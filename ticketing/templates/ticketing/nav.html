@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'ticketing/style.css' %}">
+    <link rel="shortcut icon" type="image/ico" href="{% static 'ticketing/favicon.ico' %}"/>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">West Side Stories</h1>
+        <h2 class="text-center mb-4">Ticket Dashboard</h2>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <div class="container-fluid">
+                <h6 style="color:#FFF; padding-top:9px;">Welcome, {{ user.username|capfirst }}</h6>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/tickets/view/">Dashboard</a>
+                        <a class="nav-link" href="/tickets/">Create Ticket</a>
+                        <a class="nav-link" href="/tickets/all/">Show All</a>
+                        <a class="nav-link" href="/tickets/view/">Hide Closed</a>
+                        <a class="nav-link" href="/tickets/logout/">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
