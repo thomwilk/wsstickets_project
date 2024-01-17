@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
+
+EMAIL_USER = config('EMAIL_USER')
+EMAIL_PASSWORD = config('EMAIL_PASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +46,14 @@ INSTALLED_APPS = [
     'bootstrap5',
     'captcha',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = EMAIL_USER
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+
 
 STATIC_URL = '/static/'
 
