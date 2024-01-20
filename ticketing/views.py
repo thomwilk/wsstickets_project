@@ -29,9 +29,8 @@ def submit_ticket(request):
             mail_subject = 'New ticket submitted'
             message = f"New ticket submitted: {ticket.building.name} Unit {ticket.unit} - {ticket.status}"
             email = EmailMessage(mail_subject, message, to=['thomwilkinson@gmail.com'])
-            email.send()
-            
-            return render(request, 'ticketing/dashboard.html')  # Redirect after POST
+            email.send()            
+            return redirect('view_tickets')  # Redirect after POST
     else:
         form = TicketForm()  # An unbound form
 
