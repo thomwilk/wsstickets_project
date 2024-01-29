@@ -2,8 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <title>Ticket Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'ticketing/style.css' %}">
     <link rel="shortcut icon" type="image/ico" href="{% static 'ticketing/favicon.ico' %}"/>
     {% load bootstrap5 %}
@@ -22,11 +24,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="/tickets/view/">Dashboard</a>
-                        <a class="nav-link" href="/tickets/">Create Ticket</a>
-                        <a class="nav-link" href="/tickets/all/">Show All</a>
-                        <a class="nav-link" href="/tickets/view/">Hide Closed</a>
-                        <a class="nav-link" href="/tickets/logout/">Logout</a>
+                        <a class="nav-link" href="/view/">Dashboard</a>
+                        <a class="nav-link" href="/">Create Ticket</a>
+                        <a class="nav-link" href="/all/">Show All</a>
+                        <a class="nav-link" href="/view/">Hide Closed</a>
+                        <a class="nav-link" href="/logout/">Logout</a>
                     </div>
                 </div>
             </div>

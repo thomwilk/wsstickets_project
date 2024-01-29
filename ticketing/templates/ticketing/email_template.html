@@ -1,0 +1,11 @@
+{% block content %}
+<h1>New Ticket Submitted</h1>
+<p>A new ticket has been submitted with the following details:</p>
+<ul>
+    <li><strong>Building:</strong> {{ building_name }}</li>
+    <li><strong>Unit:</strong> {{ unit }}</li>
+    <li><strong>Status:</strong> {{ status }}</li>
+    <li><strong>Description:</strong> {{ description }}</li>
+</ul>
+<p>Please log in to the ticketing system to view more details and take action.</p>
+{% endblock %}

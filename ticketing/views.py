@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate, login, logout
-from .forms import TicketForm
-from .models import Ticket
+from .forms import TicketForm, ReplyForm
+from .models import Ticket, Reply
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 def index(request):
     if request.method == 'POST':
@@ -25,11 +30,20 @@ def submit_ticket(request):
             ticket = form.save(commit=False)
             ticket.status = 'Open'
             ticket.save()
-            #Send email to admin with ticket details
+            # Send email to admin with ticket details
             mail_subject = 'New ticket submitted'
-            message = f"New ticket submitted: {ticket.building.name} Unit {ticket.unit} - {ticket.status}"
-            email = EmailMessage(mail_subject, message, to=['thomwilkinson@gmail.com'])
-            email.send()            
+            context = {
+                'building_name': ticket.building.name,
+                'unit': ticket.unit,
+                'status': ticket.status,
+                'description': ticket.description,
+                'email': ticket.email,
+            }
+            html_message = render_to_string('ticketing/email_template.html', context)
+            recipient_list = [ticket.email]
+            email = EmailMessage(mail_subject, html_message, 'thom.wilkinson@gmail.com', recipient_list)
+            email.content_subtype = 'html'
+            email.send()
             return redirect('view_tickets')  # Redirect after POST
     else:
         form = TicketForm()  # An unbound form
@@ -71,3 +85,11 @@ def change_status(request, ticket_id, new_status):
     ticket.status = new_status
     ticket.save()
     return redirect('view_tickets')
+
+def delete_all_tickets(request):
+    Ticket.objects.all().delete()
+    return redirect('view_tickets')
+
+def reply_ticket(request):
+    form = ReplyForm()
+    return render(request, 'ticketing/reply_ticket.html', {'form': form})
