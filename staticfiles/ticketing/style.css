@@ -1,0 +1,122 @@
+/* General Reset and Basic Styles */
+* { margin: 0; padding: 0; }
+body {
+    display: flex;
+    height: 100vh;
+    font-family: 'Oswald', Arial Narrow, Arial, Sans-Serif;
+    background-color: #fff;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6em;
+    background-image: url(main-content-bg.jpg);
+    background-position: left top;
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a {
+    color: #e96f35;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, strong, b {
+    color: #f9b15c;
+}
+
+h1 {
+    margin-bottom: 20px; /* Add some space between the h1 and the form */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Form and Input Styles */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    margin: 0;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333; /* For better visibility */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
+
+/* Focus State for Inputs */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #007bff;
+}
+
+.fas {
+cursor:pointer !important;
+}
+/* Placeholder Text Style */
+::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
