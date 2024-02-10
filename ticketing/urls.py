@@ -10,7 +10,7 @@ urlpatterns = [
     path('all/', views.all_tickets, name='all_tickets'),
     path('reply/', views.reply_ticket, name='reply_ticket'),
     path('submitReply/', views.submit_reply, name='submit_reply'),
-    path('deletealltickets/', views.delete_all_tickets, name='delete_all_tickets'),
+    path('clear/', views.delete_all_tickets, name='delete_all_tickets'),
     path('captcha/', include('captcha.urls')),
 ]
 
