@@ -19,17 +19,17 @@
                 <td class="align-middle">{{ ticket.description }}</td>
                 <td class="text-center align-middle">{{ ticket.status }}</td>
                 <td class="text-center">
-                    <form style="background-color:transparent; margin:0 auto;" id="status-form" method="POST" action="/tickets/modify/{{ ticket.id }}/{{ selectedOption }}">
+                    <form style="background-color:transparent; margin:0 auto;" id="status-form" method="POST" action="/modify/{{ ticket.id }}/{{ selectedOption }}">
                         {% csrf_token %}
                         <div class="input-group d-flex justify-content-center">
                             <div class="icon-container">
-                                <i class="fas fa-2x fa-spinner" onclick="updateStatus('In Progress')"></i>
+                                <i class="fas fa-2x fa-spinner" onclick="updateStatus({{ ticket.id }}, 'In Progress')"></i>
                             </div>
                             <div class="icon-container">
-                                <i class="fas fa-2x fa-check-circle" onclick="updateStatus('Closed')"></i>
+                                <i class="fas fa-2x fa-check-circle" onclick="updateStatus({{ ticket.id }}, 'Closed')"></i>
                             </div>
                             <div class="icon-container">
-                                <i class="fas fa-2x fa-folder-open openBtn" onclick="updateStatus('Open')"></i>
+                                <i class="fas fa-2x fa-folder-open openBtn" onclick="updateStatus({{ ticket.id }}, 'Open')"></i>
                             </div>
                             <div class="icon-container">
                                 <i data-email="{{ ticket.email }}" data-status="{{ ticket.status }}" data-building="{{ ticket.building }}" data-unit="{{ ticket.unit }}" class="fas fa-2x fa-reply openBtn"></i>
@@ -83,11 +83,16 @@
                 }
             });
         });
-        
+
         $(".closeBtn").on('click', function(){
             $("#myModal").modal('hide');
         });
     });
+        function updateStatus(ticket_id, status) {
+            var form = document.getElementById('status-form');
+            form.action = '/modify/' + ticket_id + '/' + status + '/';
+            form.submit();
+        }                           
 </script>
 </body>
 </html>
