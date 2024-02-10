@@ -50,6 +50,25 @@ def submit_ticket(request):
 
     return render(request, 'ticketing/submit_ticket.html', {'form': form})
 
+def submit_reply(request):
+    if request.method == 'POST':
+        # Send email to tenant with reply
+        mail_subject = 'Westside Stories Ticket Follow-up'
+        context = {
+            'building': request.POST.get('building'),
+            'unit': request.POST.get('unit'),
+            'status': request.POST.get('status'),
+            'description': request.POST.get('description'),
+            'email': request.POST.get('recipient'),
+        }
+        html_message = render_to_string('ticketing/reply_template.html', context)
+        recipient_list = [request.POST.get('recipient')]
+        email = EmailMessage(mail_subject, html_message, 'thomwilkinson@gmail.com', recipient_list)
+        email.content_subtype = 'html'
+        email.send()
+        
+        return redirect('view_tickets')  # Redirect after POST
+
 def login_view(request):
     context = {}
     #check credentials and authenticate user
@@ -66,11 +85,11 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     context = {'logged_out': True}
-    return redirect('/tickets/login/')
+    return redirect('/login/')
 
 def view_tickets(request):
     if not request.user.is_authenticated:
-        return redirect('/tickets/login/')
+        return redirect('/login/')
     tickets = Ticket.objects.exclude(status='Closed')
     context = {'tickets': tickets}
     return render(request, 'ticketing/dashboard.html', context)

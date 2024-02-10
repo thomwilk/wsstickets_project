@@ -32,7 +32,7 @@
                                 <i class="fas fa-2x fa-folder-open openBtn" onclick="updateStatus('Open')"></i>
                             </div>
                             <div class="icon-container">
-                                <i class="fas fa-2x fa-reply openBtn"></i>
+                                <i data-email="{{ ticket.email }}" data-status="{{ ticket.status }}" data-building="{{ ticket.building }}" data-unit="{{ ticket.unit }}" class="fas fa-2x fa-reply openBtn"></i>
                             </div>
                         </div>
                     </form>                        
@@ -61,18 +61,29 @@
 <script>
     $(document).ready(function(){
         $(".openBtn").on('click', function(){
+            var email = $(this).data('email');
+            var status = $(this).data('status');
+            var building = $(this).data('building');
+            var unit = $(this).data('unit');
             $.ajax({
                 url: '/reply/',
                 type: 'GET',
                 success: function(response) {
                     $('.modal-body').html(response);
                     $('#myModal').modal('show');
+                    $('#fldEmail').val(email);
+                    $('#fldStatus').val(status);
+                    $('#fldBuilding').val(building);
+                    $('#fldUnit').val(unit);
+                    $('#id_recipient').val(email);
+                    $('#id_description').focus();
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
                 }
             });
         });
+        
         $(".closeBtn").on('click', function(){
             $("#myModal").modal('hide');
         });
