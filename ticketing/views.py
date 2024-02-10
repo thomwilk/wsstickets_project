@@ -95,20 +95,28 @@ def view_tickets(request):
     return render(request, 'ticketing/dashboard.html', context)
 
 def all_tickets(request):
+    if not request.user.is_authenticated:
+        return redirect('/login/')
     tickets = Ticket.objects.all()
     context = {'tickets': tickets}
     return render(request, 'ticketing/dashboard.html', context)
 
 def change_status(request, ticket_id, new_status):
+    if not request.user.is_authenticated:
+        return redirect('/login/')
     ticket = Ticket.objects.get(pk=ticket_id)
     ticket.status = new_status
     ticket.save()
     return redirect('view_tickets')
 
 def delete_all_tickets(request):
+    if not request.user.is_authenticated:
+        return redirect('/login/')
     Ticket.objects.all().delete()
     return redirect('view_tickets')
 
 def reply_ticket(request):
+    if not request.user.is_authenticated:
+        return redirect('/login/')
     form = ReplyForm()
     return render(request, 'ticketing/reply_ticket.html', {'form': form})

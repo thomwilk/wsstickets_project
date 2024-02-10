@@ -15,13 +15,13 @@ class Ticket(models.Model):
     ]
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    unit = models.CharField(max_length=10)
+    unit = models.IntegerField()
     description = models.TextField()
     status = models.CharField(max_length=12, choices=STATUS_CHOICES, default='open')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField()
     tenant_name = models.CharField(max_length=100, blank=True, null=True)
     entry_permission = models.BooleanField(default=True,)
 
