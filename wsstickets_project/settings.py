@@ -53,16 +53,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = EMAIL_USER
 EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wsstickets_project.wsstickets_project.wsgi.application'
+WSGI_APPLICATION = 'wsstickets_project.wsgi.application'
 
 
 # Database
@@ -142,9 +132,12 @@ APPEND_SLASH = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR/'static']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
