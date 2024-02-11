@@ -1,1 +1,1 @@
-web: gunicorn wsstickets_project
+web: gunicorn 'wsstickets_project.wsgi'
