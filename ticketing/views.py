@@ -85,11 +85,11 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     context = {'logged_out': True}
-    return redirect('/login/')
+    return redirect('/login')
 
 def view_tickets(request):
     if not request.user.is_authenticated:
-        return redirect('/login/')
+        return redirect('/login')
     tickets = Ticket.objects.exclude(status='Closed')
     context = {'tickets': tickets}
     return render(request, 'ticketing/dashboard.html', context)
