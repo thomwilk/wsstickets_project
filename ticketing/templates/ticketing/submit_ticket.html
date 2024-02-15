@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <meta name="robots" content="noindex, nofollow">
-    <title>Submit Ticket</title>
+    <title>Westside Stories Maintenance Tickets System</title>
     <link rel="stylesheet" type="text/css" href="{% static 'ticketing/style.css' %}">
     <link rel="shortcut icon" type="image/ico" href="{% static 'ticketing/favicon.ico' %}"/>
     {% load bootstrap5 %}
@@ -12,7 +12,8 @@
 </head>
 <body>
     <div class="form-container">
-    <h1>Submit a Maintenance Ticket</h1>
+        <h1`>Westside Stories Maintenance Tickets System</h1>`
+        <h2>Submit a New Ticket</h2>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
