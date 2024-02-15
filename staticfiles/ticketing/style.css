@@ -31,6 +31,7 @@ h1, h2, strong, b {
 }
 
 h1 {
+    margin-top: 20px;
     margin-bottom: 20px; /* Add some space between the h1 and the form */
 }
 
@@ -51,7 +52,6 @@ form {
     width: 350px;
     margin: 0;
 }
-
 label {
     display: block;
     margin-top: 10px;
