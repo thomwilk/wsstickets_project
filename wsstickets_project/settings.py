@@ -32,7 +32,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://wsstickets.up.railway.app', 'https://wsstickets.tdwilk.com']
+CSRF_TRUSTED_ORIGINS = ['https://wsstickets.up.railway.app', 'https://wsstickets.tdwilk.com', 'https://hammerhead-app-m9ubb.ondigitalocean.app/']
 
 # Application definition
 
